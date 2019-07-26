@@ -10,7 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :babyweeks, BabyweeksWeb.Endpoint,
-  url: [scheme: "https", host: "babyweeks", port: 443],
+  url: [scheme: "https", host: "babyweeks.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 

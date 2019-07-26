@@ -1,6 +1,7 @@
 <div>
-
-
+  <div>
+    This app tells you how old your baby is. Enter the birthday and click 'Computer'
+  </div>
   <form action="#" phx-submit="compute">
       <%= if @error do %>
       <h3 class="alert-danger"><%= @error %></h3>
@@ -25,6 +26,12 @@
     <%= submit "Compute", phx_disable_with: "Adding..." %>
     <%= if !@error do %>
       <h3><%= @weeks %> weeks, <%= @days %> days old</h3>
+      <table>
+        <tbody><tr><td>Today is:</td><td>July 26th, 2019</td></tr>
+        <tr><td>Age in months:</td><td>10.1</td></tr>
+        <tr><td>Age in years:</td><td>0.84</td></tr>
+        </tbody>
+      </table>
     <% end %>
   </form>
 </div>

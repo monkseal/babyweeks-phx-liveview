@@ -7,9 +7,6 @@
 # General application configuration
 use Mix.Config
 
-config :babyweeks,
-  ecto_repos: [Babyweeks.Repo]
-
 # Configures the endpoint
 config :babyweeks, BabyweeksWeb.Endpoint,
   url: [host: "localhost"],

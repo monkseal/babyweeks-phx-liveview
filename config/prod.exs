@@ -12,7 +12,10 @@ use Mix.Config
 config :babyweeks, BabyweeksWeb.Endpoint,
   url: [scheme: "https", host: "babyweeks.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: [
+    "https://babyweeks.herokuapp.com"
+  ]
 
 # Do not print debug messages in production
 config :logger, level: :info

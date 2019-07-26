@@ -32,7 +32,8 @@ defmodule BabyweeksWeb.BabyweeksLiveView do
   end
 
   def mount(_session, socket) do
-    bday = %{"m" => Timex.today.month, "d" => Timex.today.day, "y" => Timex.today.year}
+    bday = %{"m" => "9", "d" => "22", "y" => "2018"}
+    # bday = %{"m" => Timex.today.month, "d" => Timex.today.day, "y" => Timex.today.year}
 
     {:ok, assign(socket, weeks: 0, days: 0, bday: bday, error: nil  ) }
   end
@@ -42,17 +43,9 @@ defmodule BabyweeksWeb.BabyweeksLiveView do
       {:ok, start_date} ->
         end_date = Timex.today
         date_diff = fn (diffing) -> Timex.diff(end_date, start_date, diffing) end
-        {:noreply, assign(socket, weeks: date_diff.(:weeks), days: date_diff.(:days), bday: bday, error: nil  ) }
-
-
+        {:noreply, assign(socket, weeks: date_diff.(:weeks), days:  (date_diff.(:days) - date_diff.(:weeks) * 7) , bday: bday, error: nil) }
       {:error, _} ->
         {:noreply, assign(socket, weeks: 0, days: 0, bday: bday, error: "Invalid date"  ) }
-
     end
   end
-
-  # def handle_event("next", value, socket) do
-  #   clue = Queries.next_random_clue()
-  #   {:noreply, assign(socket, deploy_step: "Ready!", clue: clue, reveal_answer: false)}
-  # end
 end

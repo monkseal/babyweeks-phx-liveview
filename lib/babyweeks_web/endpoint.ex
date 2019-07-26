@@ -2,7 +2,7 @@ defmodule BabyweeksWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :babyweeks
 
   socket "/socket", BabyweeksWeb.UserSocket,
-    websocket: true,
+    websocket: [timeout: 45_000],
     longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket

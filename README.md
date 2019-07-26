@@ -1,5 +1,9 @@
 # Babyweeks
 
+This is a demo application of Elixir Phoneix LiveView it computes a baby's age in weeks.
+
+# Local development
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
@@ -13,8 +17,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Learn more
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+  * kenglish.co website: http://kenglish.co

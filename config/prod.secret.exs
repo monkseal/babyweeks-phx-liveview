@@ -5,12 +5,12 @@
 # file to your .gitignore.
 use Mix.Config
 
-database_url =
-  System.get_env("DATABASE_URL") ||
-    raise """
-    environment variable DATABASE_URL is missing.
-    For example: ecto://USER:PASS@HOST/DATABASE
-    """
+database_url = "NO DB FOR THIS APP"
+  # System.get_env("DATABASE_URL") ||
+  #   raise """
+  #   environment variable DATABASE_URL is missing.
+  #   For example: ecto://USER:PASS@HOST/DATABASE
+    # """
 
 config :babyweeks, Babyweeks.Repo,
   ssl: true,

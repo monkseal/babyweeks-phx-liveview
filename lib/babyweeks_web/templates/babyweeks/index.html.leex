@@ -1,0 +1,30 @@
+<div>
+
+
+  <form action="#" phx-submit="compute">
+      <%= if @error do %>
+      <h3 class="alert-danger"><%= @error %></h3>
+    <% end %>
+
+    <table>
+      <tbody>
+        <tr>
+          <th>Month</th>
+          <th>Day</th>
+          <th>Year</th>
+        </tr>
+        <tr>
+          <td>
+            <%= text_input :bday, :m, size: '5', value: @bday["m"] %>
+          </td>
+          <td><%= text_input :bday, :d, size: '5', value: @bday["d"] %></td>
+          <td><%= text_input :bday, :y, size: '5', value: @bday["y"] %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= submit "Compute", phx_disable_with: "Adding..." %>
+    <%= if !@error do %>
+      <h3><%= @weeks %> weeks, <%= @days %> days old</h3>
+    <% end %>
+  </form>
+</div>

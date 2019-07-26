@@ -31,7 +31,7 @@ defmodule BabyweeksWeb do
 
   def view do
     quote do
-      use Phoen\ix.View,
+      use Phoenix.View,
         root: "lib/babyweeks_web/templates",
         namespace: BabyweeksWeb
 

@@ -9,7 +9,7 @@ defmodule Babyweeks.Application do
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
-      Babyweeks.Repo,
+      # Babyweeks.Repo,
       # Start the endpoint when the application starts
       BabyweeksWeb.Endpoint
       # Starts a worker by calling: Babyweeks.Worker.start_link(arg)

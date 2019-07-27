@@ -30,7 +30,7 @@
       <h3><%= @calc.weeks %> weeks, <%= @calc.days %> days old</h3>
       <table>
         <tbody>
-          <tr><td>Today is:</td><td><%= @calc.today %></td></tr>
+          <tr><td>Today is:</td><td><%= Timex.format!(@calc.today, "%B %d, %Y", :strftime) %></td></tr>
           <tr><td>Age in days:</td><td><%= @calc.age_in_days %></td></tr>
           <tr><td>Age in months:</td><td><%= @calc.age_in_months %></td></tr>
           <tr><td>Age in years:</td><td><%= @calc.age_in_years %></td></tr>

@@ -10,7 +10,7 @@ defmodule BabyweeksWeb.BabyweeksLiveView do
   end
 
   def mount(_session, socket) do
-    calc = %Calculator{}
+    calc = Calculator.default_bday_to_today(%Calculator{})
     {:ok, assign(socket, calc: calc)}
   end
 

@@ -1,14 +1,14 @@
 defmodule Babyweeks.Calculator do
-  defstruct bday_month: Timex.today().month,
-            bday_year: Timex.today().year,
-            bday_day: Timex.today().day,
+  defstruct bday_month: 0,
+            bday_year: 0,
+            bday_day: 0,
             days: 0,
             weeks: 0,
             age_in_months: 0,
             age_in_years: 0,
             age_in_days: 0,
             error: nil,
-            today: Timex.today()
+            today: nil
 
   @spec from_params(%{bday_day: any, bday_month: any, bday_year: any}, nil | keyword | map) :: %{
           bday_day: any,
@@ -19,7 +19,15 @@ defmodule Babyweeks.Calculator do
     %{calc | bday_month: bday["m"], bday_year: bday["y"], bday_day: bday["d"]}
   end
 
-  def compute_weeks_and_days(calc, end_date \\ Timex.today()) do
+  def default_bday_to_today(calc) do
+    %{calc | today: today(), bday_month: today().month, bday_year: today().year, bday_day: today().day}
+  end
+
+  def today do
+    Timex.local() |> Timex.to_date()
+  end
+
+  def compute_weeks_and_days(calc, end_date \\ today()) do
     case Timex.parse("#{calc.bday_year}-#{calc.bday_month}-#{calc.bday_day}", "{YYYY}-{M}-{D}") do
       {:ok, start_date} ->
         calc

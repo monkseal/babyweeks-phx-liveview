@@ -20,4 +20,22 @@ defmodule BabyweeksWeb.BabyweeksLiveView do
        calc |> Calculator.from_params(bday) |> Calculator.compute_weeks_and_days()
      end)}
   end
+
+  def handle_event("up", value, socket) do
+    interval = String.to_existing_atom(value)
+
+    {:noreply,
+     update(socket, :calc, fn calc ->
+       calc |> Calculator.handle_up(interval) |> Calculator.compute_weeks_and_days()
+     end)}
+  end
+
+  def handle_event("down", value, socket) do
+    interval = String.to_existing_atom(value)
+
+    {:noreply,
+     update(socket, :calc, fn calc ->
+       calc |> Calculator.handle_down(interval) |> Calculator.compute_weeks_and_days()
+     end)}
+  end
 end

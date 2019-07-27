@@ -20,7 +20,13 @@ defmodule Babyweeks.Calculator do
   end
 
   def default_bday_to_today(calc) do
-    %{calc | today: today(), bday_month: today().month, bday_year: today().year, bday_day: today().day}
+    %{
+      calc
+      | today: today(),
+        bday_month: today().month,
+        bday_year: today().year,
+        bday_day: today().day
+    }
   end
 
   def today do
@@ -76,5 +82,30 @@ defmodule Babyweeks.Calculator do
 
   def clear_days_weeks(calc) do
     %{calc | weeks: 0, days: 0}
+  end
+
+  def handle_up(calc, interval \\ :days) do
+    case Timex.parse("#{calc.bday_year}-#{calc.bday_month}-#{calc.bday_day}", "{YYYY}-{M}-{D}") do
+      {:ok, bday} ->
+        options = [{interval, 1}]
+        shift_bday(calc, bday, options)
+      {:error, _message} ->
+        calc
+    end
+  end
+
+  def handle_down(calc, interval \\ :days) do
+    case Timex.parse("#{calc.bday_year}-#{calc.bday_month}-#{calc.bday_day}", "{YYYY}-{M}-{D}") do
+      {:ok, bday} ->
+        options = [{interval, -1}]
+        shift_bday(calc, bday, options)
+      {:error, _message} ->
+        calc
+    end
+  end
+
+  def shift_bday(calc, bday, shift_options) do
+    shifted = Timex.shift(bday, shift_options)
+    %{calc | bday_year: shifted.year, bday_month: shifted.month, bday_day: shifted.day}
   end
 end

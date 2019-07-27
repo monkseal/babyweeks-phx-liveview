@@ -6,11 +6,11 @@
 use Mix.Config
 
 database_url = "NO DB FOR THIS APP"
-  # System.get_env("DATABASE_URL") ||
-  #   raise """
-  #   environment variable DATABASE_URL is missing.
-  #   For example: ecto://USER:PASS@HOST/DATABASE
-    # """
+# System.get_env("DATABASE_URL") ||
+#   raise """
+#   environment variable DATABASE_URL is missing.
+#   For example: ecto://USER:PASS@HOST/DATABASE
+# """
 
 config :babyweeks, Babyweeks.Repo,
   ssl: true,

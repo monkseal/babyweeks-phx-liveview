@@ -3,8 +3,8 @@
     This app tells you how old your baby is. Enter the birthday and click 'Computer'
   </div>
   <form action="#" phx-submit="compute">
-      <%= if @error do %>
-      <h3 class="alert-danger"><%= @error %></h3>
+      <%= if @calc.error do %>
+      <h3 class="alert-danger"><%= @calc.error %></h3>
     <% end %>
 
     <table>
@@ -16,20 +16,24 @@
         </tr>
         <tr>
           <td>
-            <%= text_input :bday, :m, size: '5', value: @bday["m"] %>
+            <%= text_input :bday, :m, size: '5', value: @calc.bday_month %>
           </td>
-          <td><%= text_input :bday, :d, size: '5', value: @bday["d"] %></td>
-          <td><%= text_input :bday, :y, size: '5', value: @bday["y"] %></td>
+          <td><%= text_input :bday, :d, size: '5', value: @calc.bday_day %></td>
+          <td><%= text_input :bday, :y, size: '5', value: @calc.bday_year %></td>
         </tr>
       </tbody>
     </table>
+
     <%= submit "Compute", phx_disable_with: "Adding..." %>
-    <%= if !@error do %>
-      <h3><%= @weeks %> weeks, <%= @days %> days old</h3>
+
+    <%= if !@calc.error do %>
+      <h3><%= @calc.weeks %> weeks, <%= @calc.days %> days old</h3>
       <table>
-        <tbody><tr><td>Today is:</td><td>July 26th, 2019</td></tr>
-        <tr><td>Age in months:</td><td>10.1</td></tr>
-        <tr><td>Age in years:</td><td>0.84</td></tr>
+        <tbody>
+          <tr><td>Today is:</td><td><%= @calc.today %></td></tr>
+          <tr><td>Age in days:</td><td><%= @calc.age_in_days %></td></tr>
+          <tr><td>Age in months:</td><td><%= @calc.age_in_months %></td></tr>
+          <tr><td>Age in years:</td><td><%= @calc.age_in_years %></td></tr>
         </tbody>
       </table>
     <% end %>

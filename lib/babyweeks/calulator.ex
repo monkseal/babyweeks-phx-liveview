@@ -1,13 +1,10 @@
 defmodule Babyweeks.Calculator do
-  defstruct bday_month: 0,
-            bday_year: 0,
-            bday_day: 0,
+  defstruct bday: nil,
             days: 0,
             weeks: 0,
             age_in_months: 0,
             age_in_years: 0,
             age_in_days: 0,
-            error: nil,
             today: nil
 
   @spec from_params(%{bday_day: any, bday_month: any, bday_year: any}, nil | keyword | map) :: %{
@@ -16,16 +13,20 @@ defmodule Babyweeks.Calculator do
           bday_year: any
         }
   def from_params(calc, bday) do
-    %{calc | bday_month: bday["m"], bday_year: bday["y"], bday_day: bday["d"]}
+    case Timex.parse("#{bday["y"]}-#{bday["m"]}-#{bday["d"]}", "{YYYY}-{M}-{D}") do
+      {:ok, bday} ->
+        new_calc = %{calc | bday: bday }
+        {:ok, new_calc }
+      {:error, message} ->
+        {:error, invalid_date_error(message) }
+    end
   end
 
   def default_bday_to_today(calc) do
     %{
       calc
       | today: today(),
-        bday_month: today().month,
-        bday_year: today().year,
-        bday_day: today().day
+        bday: today()
     }
   end
 
@@ -34,24 +35,14 @@ defmodule Babyweeks.Calculator do
   end
 
   def compute_weeks_and_days(calc, end_date \\ today()) do
-    case Timex.parse("#{calc.bday_year}-#{calc.bday_month}-#{calc.bday_day}", "{YYYY}-{M}-{D}") do
-      {:ok, start_date} ->
-        calc
-        |> compute_weeks(end_date, start_date)
-        |> compute_days(end_date, start_date)
-        |> compute_age_in_days(end_date, start_date)
-        |> compute_age_in_months(end_date, start_date)
-        |> compute_age_in_years(end_date, start_date)
-        |> no_error
-
-      {:error, message} ->
-        calc |> invalid_date_error(message) |> clear_days_weeks
-    end
+    calc
+    |> compute_weeks(end_date, calc.bday)
+    |> compute_days(end_date, calc.bday)
+    |> compute_age_in_days(end_date, calc.bday)
+    |> compute_age_in_months(end_date, calc.bday)
+    |> compute_age_in_years(end_date, calc.bday)
   end
 
-  def no_error(calc) do
-    %{calc | error: nil}
-  end
 
   def compute_weeks(calc, end_date, start_date) do
     %{calc | weeks: Timex.diff(end_date, start_date, :weeks)}
@@ -76,8 +67,8 @@ defmodule Babyweeks.Calculator do
     %{calc | age_in_years: Timex.diff(end_date, start_date, :years)}
   end
 
-  def invalid_date_error(calc, message) do
-    %{calc | error: "Invalid birday: #{message}"}
+  def invalid_date_error(message) do
+     "Invalid birday: #{message}"
   end
 
   def clear_days_weeks(calc) do
@@ -85,27 +76,18 @@ defmodule Babyweeks.Calculator do
   end
 
   def handle_up(calc, interval \\ :days) do
-    case Timex.parse("#{calc.bday_year}-#{calc.bday_month}-#{calc.bday_day}", "{YYYY}-{M}-{D}") do
-      {:ok, bday} ->
-        options = [{interval, 1}]
-        shift_bday(calc, bday, options)
-      {:error, _message} ->
-        calc
-    end
+
+    options = [{interval, 1}]
+    shift_bday(calc, calc.bday, options)
   end
 
   def handle_down(calc, interval \\ :days) do
-    case Timex.parse("#{calc.bday_year}-#{calc.bday_month}-#{calc.bday_day}", "{YYYY}-{M}-{D}") do
-      {:ok, bday} ->
-        options = [{interval, -1}]
-        shift_bday(calc, bday, options)
-      {:error, _message} ->
-        calc
-    end
+    options = [{interval, -1}]
+    shift_bday(calc, calc.bday, options)
   end
 
   def shift_bday(calc, bday, shift_options) do
     shifted = Timex.shift(bday, shift_options)
-    %{calc | bday_year: shifted.year, bday_month: shifted.month, bday_day: shifted.day}
+    %{calc | bday: shifted}
   end
 end

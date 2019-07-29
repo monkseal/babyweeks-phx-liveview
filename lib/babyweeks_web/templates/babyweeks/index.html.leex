@@ -3,8 +3,8 @@
     This app tells you how old your baby is. Enter the birthday and click 'Computer'
   </div>
   <form action="#" phx-submit="compute">
-      <%= if @calc.error do %>
-      <h3 class="alert-danger"><%= @calc.error %></h3>
+    <%= if @error do %>
+      <h3 class="alert-danger"><%= @error %></h3>
     <% end %>
 
     <table>
@@ -17,18 +17,18 @@
         <tr>
           <td>
             <button phx-click="up" phx-value="months"><span>&uarr;</span></button>
-            <%= text_input :bday, :m, size: '5', value: @calc.bday_month %>
+            <%= text_input :bday, :m, size: '5', value: @calc.bday.month %>
             <button phx-click="down" phx-value="months"><span>&darr;</span></button>
           </td>
 
           <td>
             <button phx-click="up" phx-value="days"><span>&uarr;</span></button>
-            <%= text_input :bday, :d, size: '5', value: @calc.bday_day %>
+            <%= text_input :bday, :d, size: '5', value: @calc.bday.day %>
             <button phx-click="down" phx-value="days"><span>&darr;</span></button>
             </td>
           <td>
             <button phx-click="up" phx-value="years"><span>&uarr;</span></button>
-            <%= text_input :bday, :y, size: '5', value: @calc.bday_year %>
+            <%= text_input :bday, :y, size: '5', value: @calc.bday.year %>
             <button phx-click="down" phx-value="years"><span>&darr;</span></button>
           </td>
         </tr>
@@ -37,7 +37,7 @@
 
     <%= submit "Compute", phx_disable_with: "Adding..." %>
 
-    <%= if !@calc.error do %>
+    <%= if !@error do %>
       <h3><%= @calc.weeks %> weeks, <%= @calc.days %> days old</h3>
       <table>
         <tbody>

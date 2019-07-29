@@ -11,14 +11,21 @@ defmodule BabyweeksWeb.BabyweeksLiveView do
 
   def mount(_session, socket) do
     calc = Calculator.default_bday_to_today(%Calculator{})
-    {:ok, assign(socket, calc: calc)}
+    {:ok, assign(socket, calc: calc, error: nil)}
   end
 
-  def handle_event("compute", %{"bday" => bday}, socket) do
-    {:noreply,
-     update(socket, :calc, fn calc ->
-       calc |> Calculator.from_params(bday) |> Calculator.compute_weeks_and_days()
-     end)}
+  @spec handle_event(<<_::16, _::_*8>>, any, Phoenix.LiveView.Socket.t()) :: {:noreply, any}
+  def handle_event("compute", %{"bday" => bday}, %{assigns: assigns} = socket) do
+    case Calculator.from_params(assigns.calc, bday) do
+      {:ok, updated_calc} ->
+        {:noreply,
+        assign(socket, error: nil, calc: Calculator.compute_weeks_and_days(updated_calc))
+        }
+
+      {:error, message} ->
+        {:noreply,
+         assign(socket, error: message)}
+    end
   end
 
   def handle_event("up", value, socket) do

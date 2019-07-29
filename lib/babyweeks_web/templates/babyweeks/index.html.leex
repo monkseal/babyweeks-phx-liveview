@@ -17,18 +17,18 @@
         <tr>
           <td>
             <button phx-click="up" phx-value="months"><span>&uarr;</span></button>
-            <%= text_input :bday, :m, size: '5', value: @calc.bday.month %>
+            <%= number_input :bday, :m, size: '5', value: @calc.bday.month  %>
             <button phx-click="down" phx-value="months"><span>&darr;</span></button>
           </td>
 
           <td>
             <button phx-click="up" phx-value="days"><span>&uarr;</span></button>
-            <%= text_input :bday, :d, size: '5', value: @calc.bday.day %>
+            <%= number_input :bday, :d, size: '5', value: @calc.bday.day %>
             <button phx-click="down" phx-value="days"><span>&darr;</span></button>
             </td>
           <td>
             <button phx-click="up" phx-value="years"><span>&uarr;</span></button>
-            <%= text_input :bday, :y, size: '5', value: @calc.bday.year %>
+            <%= number_input :bday, :y, size: '5', value: @calc.bday.year %>
             <button phx-click="down" phx-value="years"><span>&darr;</span></button>
           </td>
         </tr>

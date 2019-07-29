@@ -21,6 +21,15 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
     </main>
+    <footer id="footer">
+        <div class="copyright">
+            <div id="footer-info" class="inner">
+              <a href="http://kenglish.co">© 2019 Kenglish.co Inc.&nbsp;</a>
+            </div>
+        </div>
+
+    </footer>
+
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

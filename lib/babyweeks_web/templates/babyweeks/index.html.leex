@@ -14,7 +14,7 @@
           <th>Day</th>
           <th>Year</th>
         </tr>
-        <tr>
+        <tr class="calendar-row">
           <td>
             <button phx-click="up" phx-value="months"><span>&uarr;</span></button>
             <%= number_input :bday, :m, size: '5', value: @calc.bday.month  %>

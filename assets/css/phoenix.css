@@ -119,7 +119,9 @@ header nav ul {
 header nav a {
   display: block;
 }
-
+footer .copyright {
+  text-align: center;
+}
 @media (min-width: 40.0rem) { /* Small devices (landscape phones, 576px and up) */
   header section {
     flex-direction: row;

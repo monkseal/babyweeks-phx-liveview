@@ -1,6 +1,6 @@
 # Babyweeks
 
-This is a demo application of Elixir Phoneix LiveView it computes a baby's age in weeks.
+This is a demo application of Elixir Phoneix LiveView it computes a baby's age in weeks. The app is currently deployed on Heroku here: [babyweeks.herokuapp.com](https://babyweeks.herokuapp.com)
 
 # Local development
 

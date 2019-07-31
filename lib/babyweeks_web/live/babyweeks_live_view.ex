@@ -1,5 +1,4 @@
 defmodule BabyweeksWeb.BabyweeksLiveView do
-  require Logger
   use Phoenix.LiveView
 
   alias Babyweeks.Calculator

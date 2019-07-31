@@ -18,12 +18,10 @@ defmodule BabyweeksWeb.BabyweeksLiveView do
     case Calculator.from_params(assigns.calc, bday) do
       {:ok, updated_calc} ->
         {:noreply,
-        assign(socket, error: nil, calc: Calculator.compute_weeks_and_days(updated_calc))
-        }
+         assign(socket, error: nil, calc: Calculator.compute_weeks_and_days(updated_calc))}
 
       {:error, message} ->
-        {:noreply,
-         assign(socket, error: message)}
+        {:noreply, assign(socket, error: message)}
     end
   end
 

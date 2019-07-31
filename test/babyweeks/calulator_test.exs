@@ -6,7 +6,7 @@ defmodule Babyweeks.CalculatorTest do
   describe "compute_weeks_and_days" do
     test "computes correct days" do
       prev = %Calculator{
-        bday:  Timex.to_date({2018, 9, 22})
+        bday: Timex.to_date({2018, 9, 22})
       }
 
       new_calculator = Calculator.compute_weeks_and_days(prev, Timex.to_date({2019, 7, 26}))

@@ -10,8 +10,8 @@ defmodule Babyweeks.CalculatorTest do
       }
 
       new_calculator = Calculator.compute_weeks_and_days(prev, Timex.to_date({2019, 7, 26}))
-      assert new_calculator.weeks == 43
-      assert new_calculator.days == 6
+      assert new_calculator.age_in_weeks == 43
+      assert new_calculator.age_in_weeks_additional_days == 6
     end
   end
 
@@ -28,9 +28,6 @@ defmodule Babyweeks.CalculatorTest do
       calc = %Calculator{}
       {:error, message} = Calculator.from_params(calc, %{"m" => "mon", "d" => "cow", "y" => 1984})
       assert message == "Invalid birday: Expected `1-2 digit month` at line 1, column 6."
-      # assert new_calculator.bday.month == "mon"
-      # assert new_calculator.bday.day == "cow"
-      # assert new_calculator.bday.year == 1984
     end
   end
 

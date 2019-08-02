@@ -16,20 +16,20 @@
         </tr>
         <tr class="calendar-row">
           <td>
-            <button phx-click="up" phx-value="months"><span>&uarr;</span></button>
+            <button phx-click="up" phx-value="months"  tabindex="-1" ><span>&uarr;</span></button>
             <%= number_input :bday, :m, size: '5', value: @calc.bday.month  %>
-            <button phx-click="down" phx-value="months"><span>&darr;</span></button>
+            <button phx-click="down" phx-value="months"  tabindex="-1" ><span>&darr;</span></button>
           </td>
 
           <td>
-            <button phx-click="up" phx-value="days"><span>&uarr;</span></button>
+            <button phx-click="up" phx-value="days"  tabindex="-1" ><span>&uarr;</span></button>
             <%= number_input :bday, :d, size: '5', value: @calc.bday.day %>
-            <button phx-click="down" phx-value="days"><span>&darr;</span></button>
+            <button phx-click="down" phx-value="days"  tabindex="-1" ><span>&darr;</span></button>
             </td>
           <td>
-            <button phx-click="up" phx-value="years"><span>&uarr;</span></button>
+            <button phx-click="up" phx-value="years"  tabindex="-1" ><span>&uarr;</span></button>
             <%= number_input :bday, :y, size: '5', value: @calc.bday.year %>
-            <button phx-click="down" phx-value="years"><span>&darr;</span></button>
+            <button phx-click="down" phx-value="years"  tabindex="-1" ><span>&darr;</span></button>
           </td>
         </tr>
       </tbody>

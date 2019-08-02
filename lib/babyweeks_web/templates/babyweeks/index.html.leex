@@ -40,6 +40,15 @@
     <%= if !@error do %>
       <h2>Today your baby is:</h3>
       <h3><%= @calc.age_in_weeks %> weeks, <%= @calc.age_in_weeks_additional_days %> days old</h3>
+      <%= if (length @links) > 0 do %>
+        <ul>
+          <%= for link <- @links do %>
+            <li><%= link(link.title, to: link.href, target: "_blank") %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+
       <table>
         <tbody>
           <tr><td>Today is:</td><td><%= Timex.format!(@calc.today, "%B %d, %Y", :strftime) %></td></tr>

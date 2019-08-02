@@ -34,14 +34,16 @@
         </tr>
       </tbody>
     </table>
-
+    <div class='button-center'>
     <%= submit "Compute", phx_disable_with: "Adding..." %>
-
+    </div>
     <%= if !@error do %>
+      <h2>Today your baby is:</h3>
       <h3><%= @calc.age_in_weeks %> weeks, <%= @calc.age_in_weeks_additional_days %> days old</h3>
       <table>
         <tbody>
           <tr><td>Today is:</td><td><%= Timex.format!(@calc.today, "%B %d, %Y", :strftime) %></td></tr>
+          <tr><td>Birthday is:</td><td><%= Timex.format!(@calc.bday, "%B %d, %Y", :strftime) %></td></tr>
           <tr><td>Age in days:</td><td><%= @calc.age_in_days %></td></tr>
           <tr><td>Age in months:</td><td><%= @calc.age_in_months %></td></tr>
           <tr><td>Age in years:</td><td><%= @calc.age_in_years %></td></tr>

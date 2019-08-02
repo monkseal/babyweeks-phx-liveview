@@ -1,3 +1,10 @@
 tr.calendar-row button {
    width: 100%;
 }
+.button-center {
+margin-left: 30px;
+margin-right: 30px;
+}
+.button-center button {
+width: 100%;
+}
